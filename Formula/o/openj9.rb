@@ -1,8 +1,8 @@
 class Openj9 < Formula
   desc "High performance, scalable, Java virtual machine"
   homepage "https://www.eclipse.org/openj9/"
-  url "https://github.com/eclipse-openj9/openj9/archive/refs/tags/openj9-0.63.0.tar.gz"
-  sha256 "7a34308256f7c045a5e71f359ee966212aa3c8c5152e5fad0efa137adf494b68"
+  url "https://github.com/eclipse-openj9/openj9/archive/refs/tags/openj9-0.63.0.1.tar.gz"
+  sha256 "d77852d88899dc94b9d973f055711869d6b4dcce7e511eff46220924cc65e432"
   license any_of: [
     "EPL-2.0",
     "Apache-2.0",
