@@ -16,7 +16,6 @@ class Netbird < Formula
   def install
     ENV["CGO_ENABLED"] = "0"
     ldflags = %W[
-      -s -w
       -X github.com/netbirdio/netbird/version.version=#{version}
       -X main.commit=NONE
       -X main.date==#{time.iso8601}
