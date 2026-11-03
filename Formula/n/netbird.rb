@@ -18,7 +18,7 @@ class Netbird < Formula
     ldflags = %W[
       -X github.com/netbirdio/netbird/version.version=#{version}
       -X main.commit=NONE
-      -X main.date==#{time.iso8601}
+      -X main.date=#{time.iso8601}
       -X main.builtBy=#{tap.user}
     ]
     system "go", "build", *std_go_args(ldflags:), "./client"
