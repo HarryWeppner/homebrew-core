@@ -41,6 +41,9 @@ class Libdap < Formula
     depends_on "util-linux"
   end
 
+  # Needed for `make check`
+  allow_network_access! :test
+
   def install
     # Work around illegal instruction in test_simple_3_error_1 on arm linux
     check_args = ["CXX=#{ENV.cxx} -fno-stack-protector"] if OS.linux? && Hardware::CPU.arm?
