@@ -25,11 +25,13 @@ class Libdill < Formula
   depends_on "automake" => :build
   depends_on "libtool" => :build
 
-  on_arm do
-    # Using Apple clang to compile test results in executable that
-    # causes a segmentation fault, but LLVM clang or GCC seem to work.
-    # Issue ref: https://github.com/sustrik/libdill/issues/208
-    depends_on "llvm" => :test
+  on_macos do
+    on_arm do
+      # Using Apple clang to compile test results in executable that
+      # causes a segmentation fault, but LLVM clang or GCC seem to work.
+      # Issue ref: https://github.com/sustrik/libdill/issues/208
+      depends_on "llvm" => :test
+    end
   end
 
   # Apply upstream commit to fix build with newer GCC.
@@ -40,6 +42,8 @@ class Libdill < Formula
     type :backport
     resolves "https://github.com/sustrik/libdill/pull/197"
   end
+
+  deny_network_access!
 
   def install
     # C23 treats the upstream's unprototyped function pointers as zero-argument functions
@@ -52,7 +56,7 @@ class Libdill < Formula
 
   test do
     # Issue ref: https://github.com/sustrik/libdill/issues/208
-    ENV["CC"] = formula_opt_bin("llvm")/"clang" if Hardware::CPU.arm?
+    ENV["CC"] = formula_opt_bin("llvm")/"clang" if OS.mac? && Hardware::CPU.arm?
 
     (testpath/"test.c").write <<~C
       #include <libdill.h>
